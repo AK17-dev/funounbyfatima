@@ -1,61 +1,90 @@
 
 import ProductCard from './ProductCard';
+import AdminPanel from './AdminPanel';
+import { useState } from 'react';
+import { Settings } from 'lucide-react';
 
-const products = [
+const initialProducts = [
   {
     id: 1,
-    name: "Morning Bloom Cup",
-    price: 28,
-    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&q=80",
-    description: "Elegant ceramic cup with hand-painted floral motifs"
+    name: "Nautical Tea Set",
+    price: 45,
+    image: "/lovable-uploads/a8c1dbed-219c-47c9-b909-e604a5e24d12.png",
+    description: "Beautiful blue and white ceramic tea cups with nautical theme and Arabic calligraphy"
   },
   {
     id: 2,
-    name: "Rustic Earth Mug",
-    price: 32,
-    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=400&q=80",
-    description: "Natural clay finish with organic textures"
+    name: "Village Scene Vase",
+    price: 55,
+    image: "/lovable-uploads/b2529f4f-2501-47ba-8124-b0655547d505.png",
+    description: "Hand-painted glass vase featuring a charming village scene with trees and houses"
   },
   {
     id: 3,
-    name: "Sunset Glow Cup",
-    price: 30,
-    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&q=80",
-    description: "Warm gradient glazing reminiscent of golden hour"
+    name: "Terra Cotta Bowl Set",
+    price: 38,
+    image: "/lovable-uploads/6a00bbb8-5d01-4eff-8d6f-6fc091c49ccf.png",
+    description: "Set of traditional terra cotta bowls with Arabic calligraphy and decorative motifs"
   },
   {
     id: 4,
-    name: "Ocean Breeze Mug",
-    price: 35,
-    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&q=80",
-    description: "Cool blue tones with wave-like patterns"
+    name: "Golden Accent Tea Set",
+    price: 65,
+    image: "/lovable-uploads/5927860b-69c1-4927-8967-61f4af4679e9.png",
+    description: "Elegant white porcelain tea cups with golden accents and Arabic calligraphy"
   },
   {
     id: 5,
-    name: "Vintage Rose Cup",
-    price: 29,
-    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=400&q=80",
-    description: "Delicate rose motifs on cream ceramic"
+    name: "Floral Glass Tumbler",
+    price: 25,
+    image: "/lovable-uploads/4e86560e-a9ea-4996-b7da-7d7a27e90eba.png",
+    description: "Hand-painted glass tumbler with vibrant floral designs and gold rim"
   },
   {
     id: 6,
-    name: "Forest Green Mug",
-    price: 33,
-    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&q=80",
-    description: "Deep forest green with gold rim accents"
+    name: "Crystal Village Cup",
+    price: 35,
+    image: "/lovable-uploads/19811784-6532-441f-87cd-6e50f78daa29.png",
+    description: "Delicate crystal tea cup with hand-painted village scene and decorative handle"
   }
 ];
 
 const ProductShowcase = () => {
+  const [products, setProducts] = useState(initialProducts);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+
+  const handleAdminAccess = () => {
+    const password = prompt("Enter admin password:");
+    if (password === "FatimaBoss2024") {
+      setIsAdminAuthenticated(true);
+      setShowAdminPanel(true);
+    } else {
+      alert("Access denied. Only the owner can access admin features.");
+    }
+  };
+
+  const updateProducts = (updatedProducts: typeof products) => {
+    setProducts(updatedProducts);
+  };
+
   return (
     <section id="products" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 relative">
           <h3 className="text-4xl font-bold text-gray-800 mb-4">Our Collection</h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Each cup is uniquely handcrafted, making every piece one-of-a-kind. 
             Discover the perfect companion for your favorite beverages.
           </p>
+          
+          <button
+            onClick={handleAdminAccess}
+            className="absolute top-0 right-4 p-2 text-gray-400 hover:text-orange-500 transition-colors"
+            title="Admin Access"
+          >
+            <Settings className="w-5 h-5" />
+          </button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -70,6 +99,14 @@ const ProductShowcase = () => {
             Request a Custom Design
           </button>
         </div>
+        
+        {showAdminPanel && isAdminAuthenticated && (
+          <AdminPanel 
+            products={products}
+            onUpdateProducts={updateProducts}
+            onClose={() => setShowAdminPanel(false)}
+          />
+        )}
       </div>
     </section>
   );
