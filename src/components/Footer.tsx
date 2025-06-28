@@ -1,13 +1,13 @@
 
-import { Instagram, Facebook, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Facebook, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Brand Section */}
-          <div className="col-span-1 md:col-span-2">
+          <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-lg">F</span>
@@ -28,18 +28,6 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Quick Links */}
-          <div>
-            <h6 className="text-lg font-semibold mb-4">Quick Links</h6>
-            <ul className="space-y-2">
-              <li><a href="#home" className="text-gray-300 hover:text-orange-400 transition-colors">Home</a></li>
-              <li><a href="#products" className="text-gray-300 hover:text-orange-400 transition-colors">Products</a></li>
-              <li><a href="#about" className="text-gray-300 hover:text-orange-400 transition-colors">About</a></li>
-              <li><a href="#contact" className="text-gray-300 hover:text-orange-400 transition-colors">Contact</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-orange-400 transition-colors">Custom Orders</a></li>
-            </ul>
-          </div>
-          
           {/* Contact Info */}
           <div>
             <h6 className="text-lg font-semibold mb-4">Get in Touch</h6>
@@ -48,14 +36,9 @@ const Footer = () => {
                 <Mail className="w-4 h-4 text-orange-400" />
                 <span className="text-gray-300 text-sm">fatima@funoun.com</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-orange-400" />
-                <span className="text-gray-300 text-sm">+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-orange-400" />
-                <span className="text-gray-300 text-sm">Made with love, worldwide</span>
-              </div>
+              <p className="text-gray-300 text-sm mt-4">
+                Interested in a custom piece? Send me a message and let's create something beautiful together.
+              </p>
             </div>
           </div>
         </div>

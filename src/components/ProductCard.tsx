@@ -1,6 +1,5 @@
 
-import { Heart, ShoppingCart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Heart } from 'lucide-react';
 import { useState } from 'react';
 
 interface Product {
@@ -45,19 +44,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <h4 className="text-xl font-semibold text-gray-800 mb-2">{product.name}</h4>
         <p className="text-gray-600 text-sm mb-4 leading-relaxed">{product.description}</p>
         
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center">
           <div className="flex items-center">
             <span className="text-2xl font-bold text-orange-500">${product.price}</span>
             <span className="text-gray-500 text-sm ml-1">USD</span>
           </div>
-          
-          <Button 
-            size="sm" 
-            className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-md hover:shadow-lg transition-all"
-          >
-            <ShoppingCart className="w-4 h-4 mr-2" />
-            Add to Cart
-          </Button>
         </div>
       </div>
     </div>

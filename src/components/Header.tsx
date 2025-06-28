@@ -1,5 +1,5 @@
 
-import { ShoppingBag, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 const Header = () => {
   return (
@@ -23,12 +23,8 @@ const Header = () => {
             <a href="#contact" className="text-gray-700 hover:text-orange-500 transition-colors font-medium">Contact</a>
           </nav>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center">
             <Heart className="w-5 h-5 text-gray-600 hover:text-red-500 cursor-pointer transition-colors" />
-            <div className="relative">
-              <ShoppingBag className="w-5 h-5 text-gray-600 hover:text-orange-500 cursor-pointer transition-colors" />
-              <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
-            </div>
           </div>
         </div>
       </div>
