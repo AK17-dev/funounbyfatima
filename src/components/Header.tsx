@@ -1,5 +1,5 @@
 
-import { Heart, Mail } from 'lucide-react';
+import { Heart, Mail, Instagram, Facebook, Inbox } from 'lucide-react';
 import { useState } from 'react';
 
 const Header = () => {
@@ -8,6 +8,14 @@ const Header = () => {
   const handleContactClick = () => {
     setShowContact(true);
     setTimeout(() => setShowContact(false), 3000);
+  };
+
+  const handleInstagramClick = () => {
+    window.open('https://www.instagram.com/funoun_by_fatima?igsh=MXFvbWZ1eGh2djg4NA==', '_blank');
+  };
+
+  const handleFacebookClick = () => {
+    window.open('https://www.facebook.com/share/18pStMaAAX/', '_blank');
   };
 
   return (
@@ -25,14 +33,23 @@ const Header = () => {
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-700 hover:text-orange-500 transition-colors font-medium">Home</a>
-            <a href="#products" className="text-gray-700 hover:text-orange-500 transition-colors font-medium">Products</a>
-            <a href="#about" className="text-gray-700 hover:text-orange-500 transition-colors font-medium">About</a>
+            <button 
+              onClick={handleInstagramClick}
+              className="text-gray-700 hover:text-orange-500 transition-colors"
+            >
+              <Instagram className="w-6 h-6" />
+            </button>
+            <button 
+              onClick={handleFacebookClick}
+              className="text-gray-700 hover:text-orange-500 transition-colors"
+            >
+              <Facebook className="w-6 h-6" />
+            </button>
             <button 
               onClick={handleContactClick}
-              className="text-gray-700 hover:text-orange-500 transition-colors font-medium"
+              className="text-gray-700 hover:text-orange-500 transition-colors"
             >
-              Contact
+              <Inbox className="w-6 h-6" />
             </button>
           </nav>
           
