@@ -4,7 +4,15 @@ import AdminPanel from './AdminPanel';
 import { useState } from 'react';
 import { Settings } from 'lucide-react';
 
-const initialProducts = [
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  description: string;
+}
+
+const initialProducts: Product[] = [
   {
     id: 1,
     name: "Nautical Tea Set",
@@ -50,7 +58,15 @@ const initialProducts = [
 ];
 
 const ProductShowcase = () => {
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState<Product[]>(() => {
+    try {
+      const stored = localStorage.getItem("funoun-products");
+      return stored ? JSON.parse(stored) : initialProducts;
+    } catch {
+      return initialProducts;
+    }
+  });
+
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
 
@@ -64,8 +80,13 @@ const ProductShowcase = () => {
     }
   };
 
-  const updateProducts = (updatedProducts: typeof products) => {
+  const updateProducts = (updatedProducts: Product[]) => {
     setProducts(updatedProducts);
+    try {
+      localStorage.setItem("funoun-products", JSON.stringify(updatedProducts));
+    } catch (error) {
+      console.error("Failed to save products to localStorage:", error);
+    }
   };
 
   return (
@@ -74,34 +95,34 @@ const ProductShowcase = () => {
         <div className="text-center mb-16 relative">
           <h3 className="text-4xl font-bold text-gray-800 mb-4">Our Collection</h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Each cup is uniquely handcrafted, making every piece one-of-a-kind. 
+            Each cup is uniquely handcrafted, making every piece one-of-a-kind.
             Discover the perfect companion for your favorite beverages.
           </p>
-          
+
           <button
             onClick={handleAdminAccess}
-            className="absolute top-0 right-4 p-2 text-gray-400 hover:text-orange-500 transition-colors"
+            className="absolute top-0 right-4 p-2 text-gray-400 hover:text-purple-500 transition-colors"
             title="Admin Access"
           >
             <Settings className="w-5 h-5" />
           </button>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-4">Can't find what you're looking for?</p>
-          <button className="text-orange-500 hover:text-orange-600 font-medium underline">
+          <button className="text-purple-500 hover:text-purple-600 font-medium underline">
             Request a Custom Design
           </button>
         </div>
-        
+
         {showAdminPanel && isAdminAuthenticated && (
-          <AdminPanel 
+          <AdminPanel
             products={products}
             onUpdateProducts={updateProducts}
             onClose={() => setShowAdminPanel(false)}
