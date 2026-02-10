@@ -2,6 +2,9 @@ Funoun By Fatima 🎨
 
 Funoun By Fatima is a creative online storefront built with React, HTML, CSS, and JavaScript that showcases handcrafted products such as mugs, stationery, keychains, and art pieces. The website delivers a clean, engaging user experience with a focus on visual design and product presentation.
 
+<img width="1896" height="999" alt="screenshot-1770753390520" src="https://github.com/user-attachments/assets/5bb3cc5a-f2f1-4558-806c-731f831fec8f" />
+
+
 🌟 Features
 
 Elegant, responsive product showcase
